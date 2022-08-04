@@ -101,31 +101,11 @@ $app->get("/admin/categories/:idcategory/delete",function($idcategory){
   
 });
 
-//Produtos X Categories
-//$app->get("/admin/categories/:idcategory",function($idcategory)
-/*$app->get("/admin/categories/:idcategory/products",function($idcategory){
-           
- 
-  User::verifyLogin();
-  $category = new Category();
-  $category->get((int)$idcategory);
-  $page = new PageAdmin();
 
-  $page->setTpl("categories-products",[
-    'category'=>$category->getValues(),
-    'productsRelated'=>[],
-    'productsNotRelated'=>[]
-
-  ]);
-
-
-});*/ 
 
 
 //Produtos X Categories
-
-$app->get("/admin/categories/:idcategory/products", function($idcategory){
-  
+$app->get("/admin/categories/:idcategory/products", function($idcategory){  
   
 
   User::verifyLogin();
