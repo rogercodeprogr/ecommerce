@@ -93,22 +93,18 @@ $app->get("/admin/products/:idproduct/delete",function($idproduct){
   $product->get((int)$idproduct);
   $page = new PageAdmin();
 
-  var_dump($_POST);
+
   $product->setData($_POST);
   $product->save();
 
   
   //Fazer upload do arquivo
-  //$product->setPhoto($_FILES['file']);
-
+  
 
   if ((int)$_FILES["file"]["size"] > 0)
    {
         $product->setPhoto($_FILES["file"]);
    }
-
-
-
 
 
   //Redireciona para todos produtos

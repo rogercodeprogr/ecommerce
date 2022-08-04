@@ -3,6 +3,7 @@
 use \rogercodeprogr\Page;
 use \rogercodeprogr\Model\Product;
 
+
 $app->get('/', function() {
     //No momento que ele cria a instancia do objeto page por meio da classe Page, ele chama o construtor e carrega a header.
 
@@ -18,7 +19,7 @@ $app->get('/', function() {
 });
 
 
- $app->get("/admin/categories/:idcategory",function($idcategory){
+/* $app->get("/categories/:idcategory",function($idcategory){
 
   //Verifica se está logado
  // User::verifyLogin();	
@@ -27,13 +28,13 @@ $app->get('/', function() {
   //A linha abaixo faz um casting, porque o id que está no navegador é interpretado como texto
 
   $category->get((int)$idcategory);
-  $page = new PageAdmin();
-  $page->setTpl("categories-update",[
-  	'category'=>$category->getValues()
-
-  ]);
+  $page = new Page();
+  $page->setTpl("category",[
+  	'category'=>$category->getValues(),
+    'products'=>[]
+  ]);*/
   
-});
+//});
 
 
 

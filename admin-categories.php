@@ -3,6 +3,7 @@
 use \rogercodeprogr\PageAdmin;
 use \rogercodeprogr\Model\User;
 use \rogercodeprogr\Model\Category;
+use \rogercodeprogr\Model\Product;
 
 //Rota para listagem de  categorias
 $app->get("/admin/categories",function(){
@@ -10,7 +11,7 @@ $app->get("/admin/categories",function(){
 	//Verifica se está logado
 	User::verifyLogin();
 
-    $categories = Category::listAll();
+  $categories = Category::listAll();
 	$page = new PageAdmin();
 	$page->setTpl("categories",[
 		'categories'=>$categories
@@ -63,7 +64,7 @@ $app->get("/admin/categories/:idcategory/delete",function($idcategory){
 //Rota para edição de categoria
   $app->get("/admin/categories/:idcategory",function($idcategory){
 
-  //Verifica se está logado
+     //Verifica se está logado
   User::verifyLogin();	
 
   $category = new Category();
@@ -100,13 +101,16 @@ $app->get("/admin/categories/:idcategory/delete",function($idcategory){
   
 });
 
-//Produtos X Categorias
-$app->get("/admin/categories/:idcategory/products",function($idcategory){
-
+//Produtos X Categories
+//$app->get("/admin/categories/:idcategory",function($idcategory)
+/*$app->get("/admin/categories/:idcategory/products",function($idcategory){
+           
+ 
   User::verifyLogin();
   $category = new Category();
   $category->get((int)$idcategory);
   $page = new PageAdmin();
+
   $page->setTpl("categories-products",[
     'category'=>$category->getValues(),
     'productsRelated'=>[],
@@ -115,8 +119,32 @@ $app->get("/admin/categories/:idcategory/products",function($idcategory){
   ]);
 
 
-}); 
+});*/ 
 
+
+//Produtos X Categories
+
+$app->get("/admin/categories/:idcategory/products", function($idcategory){
+  
+  
+
+  User::verifyLogin();
+   
+  $category = new Category();
+
+  $category->get((int)$idcategory);
+
+  $page = new PageAdmin();
+
+  $page->setTpl("categories-products",[
+    'category'=>$category->getValues(),
+    'productsRelated'=>[],
+    'productsNotRelated'=>[]
+  ]);
+
+
+
+});
 
 
 ?>

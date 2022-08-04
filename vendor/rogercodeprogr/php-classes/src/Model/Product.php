@@ -33,7 +33,6 @@ class Product extends Model{
     }
 
 
-
     //Método para salvar as informações dos produtos
     public function save()
     {
