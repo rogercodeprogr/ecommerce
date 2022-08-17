@@ -2,6 +2,8 @@
 
 use \rogercodeprogr\Page;
 use \rogercodeprogr\Model\Product;
+use \rogercodeprogr\Model\Category;
+use \rogercodeprogr\Model\User;
 
 
 $app->get('/', function() {
@@ -19,10 +21,10 @@ $app->get('/', function() {
 });
 
 
-/* $app->get("/categories/:idcategory",function($idcategory){
+ $app->get("/categories/:idcategory",function($idcategory){
 
   //Verifica se está logado
- // User::verifyLogin();	
+  User::verifyLogin();	
 
   $category = new Category();
   //A linha abaixo faz um casting, porque o id que está no navegador é interpretado como texto
@@ -31,11 +33,10 @@ $app->get('/', function() {
   $page = new Page();
   $page->setTpl("category",[
   	'category'=>$category->getValues(),
-    'products'=>[]
-  ]);*/
+    'products'=>Product::checklist($category->getProducts())
+  ]);
   
-//});
-
+});
 
 
 

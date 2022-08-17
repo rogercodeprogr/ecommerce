@@ -118,11 +118,40 @@ $app->get("/admin/categories/:idcategory/products", function($idcategory){
 
   $page->setTpl("categories-products",[
     'category'=>$category->getValues(),
-    'productsRelated'=>[],
-    'productsNotRelated'=>[]
+    'productsRelated'=>$category->getProducts(),
+    'productsNotRelated'=>$category->getProducts(false)
   ]);
+});
 
 
+   //Rota para salvar produto na categoria
+  $app->get("/admin/categories/:idcategory/products/:idproduct/add", function($idcategory,$idproduct){  
+
+  User::verifyLogin();
+   
+  $category = new Category();
+  $category->get((int)$idcategory);
+  $product = new Product();
+  $product->get((int)$idproduct);
+  $category->addProduct($product);
+  header("Location:/admin/categories/".$idcategory."/products");
+  exit;
+
+
+});
+
+//Rota para remover o produto da categoria
+  $app->get("/admin/categories/:idcategory/products/:idproduct/remove", function($idcategory,$idproduct){  
+
+  User::verifyLogin();
+   
+  $category = new Category();
+  $category->get((int)$idcategory);
+  $product = new Product();
+  $product->get((int)$idproduct);             
+  $category->removeProduct($product);
+  header("Location:/admin/categories/".$idcategory."/products");
+  exit;
 
 });
 
